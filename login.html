@@ -1,0 +1,57 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .toggle-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .toggle-btn.active {
+            background-color: #008CBA;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login</h2>
+    <div id="login-type">
+        <button class="toggle-btn" id="student-btn" onclick="toggleLogin('student')">Student</button>
+        <button class="toggle-btn" id="teacher-btn" onclick="toggleLogin('teacher')">Teacher</button>
+    </div>
+    <br>
+    
+    <form id="login-form" action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="hidden" id="login-type-input" name="login_type" value="student">
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        function toggleLogin(loginType) {
+            var studentBtn = document.getElementById('student-btn');
+            var teacherBtn = document.getElementById('teacher-btn');
+            var loginTypeInput = document.getElementById('login-type-input');
+
+            if (loginType === 'student') {
+                studentBtn.classList.add('active');
+                teacherBtn.classList.remove('active');
+                loginTypeInput.value = 'student';
+            } else {
+                studentBtn.classList.remove('active');
+                teacherBtn.classList.add('active');
+                loginTypeInput.value = 'teacher';
+            }
+        }
+    </script>
+</body>
+</html>
